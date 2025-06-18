@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
-import { NavLink, useNavigate } from 'react-router';
+import { NavLink, Link, useNavigate } from 'react-router';
 import { useToast } from '../context/ToastContext';
 
 export default function Header() {
@@ -16,7 +16,21 @@ export default function Header() {
 
   return (
     <header className="p-4 bg-gray-800 text-white flex justify-between items-center">
-      <div>Event App</div>
+      <Link to="/" className='flex items-center text-xl font-bold hover:scale-105 hover:text-yellow-300 hover:fill-yellow-300 transition-all duration-200'>
+        <svg
+          width="40"
+          height="40"
+          viewBox="0 0 64 64"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="mr-4"
+        >
+          <rect x="8" y="12" width="48" height="44" rx="6" stroke="white" strokeWidth="4" fill="none" />
+          <line x1="16" y1="20" x2="48" y2="20" stroke="white" strokeWidth="4" />
+          <circle cx="32" cy="38" r="6" fill="white" />
+        </svg>
+        <div> Event App</div>
+      </Link>
       <nav className="space-x-4 flex items-center">
         <NavLink
           to="/"
