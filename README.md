@@ -47,3 +47,16 @@ ENVIRONMENT=development
 
 - **Frontend:** React, Vite, TailwindCSS, React Router
 - **Backend:** Node.js, Express (provided API)
+
+## 📜 Changelog
+
+### [v1.0.0] - 2025-06-18
+
+- Initial setup of React frontend and Node.js backend API
+- Implemented event list and event detail pages
+- Added authentication with signup and signin forms
+- Integrated toast notifications for success and error messages
+- Added spinner component for loading states
+- Setup routing with React Router v6
+- Configured backend to support SQLite locally and PostgreSQL on Heroku
+- Prepared deployment to Heroku (backend) and Netlify (frontend)
