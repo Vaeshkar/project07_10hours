@@ -30,7 +30,9 @@ Make sure the backend is running at `http://localhost:3001`.
 
 Create a `.env` file in the frontend directory with:
 ```env
-VITE_API_URL=http://localhost:3001
+PORT=3001
+JWT_SECRET=someTopSecret
+ENVIRONMENT=development
 ```
 
 ## ✅ Features
