@@ -9,13 +9,6 @@ npm install
 npm run dev
 ```
 
-Make sure the backend API is running at `http://localhost:3001`.
-
-### Required `.env` file:
-```env
-VITE_API_URL=http://localhost:3001
-```
-
 ## ✅ Features
 
 - Event list view with card layout

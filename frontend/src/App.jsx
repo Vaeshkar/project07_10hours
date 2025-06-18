@@ -1,10 +1,11 @@
 import './App.css';
-import { Outlet } from 'react-router';
+import { Outlet, NavLink } from 'react-router';
+import Header from './components/Header';
 
 function App() {
   return (
     <>
-      <header className="p-4 bg-gray-800 text-white text-xl">Event App</header>
+      <Header />
       <main className="p-4">
         <Outlet />
       </main>

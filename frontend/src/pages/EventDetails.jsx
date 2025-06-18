@@ -1,6 +1,7 @@
 import { useParams } from 'react-router';
 import { useEffect, useState } from 'react';
 
+
 export default function EventDetails() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
