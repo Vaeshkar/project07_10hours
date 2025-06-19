@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import Card from './Card';
 
 export default function EditProfile() {
   const { user, updateUser } = useContext(AuthContext);
@@ -36,55 +37,61 @@ export default function EditProfile() {
     navigate('/profile');
   };
 
-  return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-gray-800 rounded shadow">
-      <h2 className="text-2xl font-bold mb-4">Edit Profile</h2>
+  const leftContent = (
+    <div className="text-black p-4">
+      <h1 className="text-[8rem] font-black uppercase mb-6 text-right max-w-[650px]">Edit Profile</h1>
+    </div>
+  );
 
-      <label className="block mb-4">
+  const rightContent = (
+    <form onSubmit={handleSubmit} className="w-full space-y-6 p-4 py-14 z-10">
+      <label className="block mb-4 text-left">
         Name:
         <input
           type="text"
-          className="w-full p-2 rounded bg-gray-700 border border-gray-600 mt-1"
+          className="w-full p-3 border bg-white/80 text-left mt-1"
           value={name}
           onChange={(e) => setName(e.target.value)}
           required
         />
       </label>
 
-      <label className="block mb-4">
+      <label className="block mb-4 text-left">
         Email:
         <input
           type="email"
-          className="w-full p-2 rounded bg-gray-700 border border-gray-600 mt-1"
+          className="w-full p-3 border bg-white/80 text-left mt-1"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
         />
       </label>
 
-      <label className="block mb-6">
-        Password: (leave blank to keep current)
+      <label className="block mb-6 text-left">
+        Password:
         <input
           type="password"
-          className="w-full p-2 rounded bg-gray-700 border border-gray-600 mt-1"
+          className="w-full p-3 border bg-white/80 text-left mt-1"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
-          placeholder="New password"
+          placeholder="leave blank to keep current"
         />
       </label>
 
       <div className="flex gap-4">
-        <button type="submit" className="bg-yellow-300 text-black py-2 px-4 rounded">
+        <button type="submit" className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3">
           Save
         </button>
         <button
           type="button"
           onClick={handleCancel}
-          className="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700"
+          className="w-2/5 text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3"
         >
           Cancel
         </button>
       </div>
     </form>
   );
+
+  return <Card leftContent={leftContent} rightContent={rightContent} sideSvgRotation="rotate-[-15deg]" />;
 }
