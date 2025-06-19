@@ -2,6 +2,10 @@
 
 This is a fullstack project featuring a React frontend and a RESTful Node.js backend API.
 
+## Live Demo
+- [Frontend on Netlify](https://event-management-app.netlify.app)
+- [Backend on Heroku](https://event-management-app-backend.herokuapp.com)
+
 ## 🔧 Project Structure
 
 ```
@@ -49,6 +53,18 @@ ENVIRONMENT=development
 - **Backend:** Node.js, Express (provided API)
 
 ## 📜 Changelog
+
+### [v1.1.0] - 2025-06-19
+
+- Fixed deployment issues: added `Procfile` and configured buildpacks for Heroku backend
+- Configured PostgreSQL for Heroku deployment, replacing local SQLite
+- Implemented CORS support to allow frontend hosted on Netlify to access backend API
+- Refactored API calls to use Axios with automatic token injection
+- Added authentication context with protected routes and token persistence
+- Deployed frontend to Netlify and backend to Heroku with working live URLs
+- Improved routing and navigation with React Router v7, including guarded routes
+- Fixed styling and hover effects on header and SVG logo with TailwindCSS
+- Cleaned up environment variable handling for local and production builds
 
 ### [v1.0.0] - 2025-06-18
 

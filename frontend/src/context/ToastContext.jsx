@@ -45,13 +45,13 @@ export const ToastProvider = ({ children }) => {
           </div>
         ))}
       </div>
-      <button
+      {/* <button
         // This button is just for testing purposes, you can remove it later
         onClick={() => addToast('Test toast message')}
         className="fixed bottom-4 right-4 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded shadow-lg z-60"
       >
         Show Toast
-      </button>
+      </button> */}
     </ToastContext.Provider>
   );
 };

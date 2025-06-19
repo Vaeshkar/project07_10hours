@@ -71,6 +71,16 @@ export default function Header() {
           </>
         )}
         {isAuthenticated && (
+          <NavLink
+            to="/profile"
+            className={({ isActive }) =>
+              isActive ? 'text-yellow-300 underline' : 'text-white hover:text-yellow-300'
+            }
+          >
+            Profile
+          </NavLink>
+        )}
+        {isAuthenticated && (
           <>
             <span className="mr-4">Welcome, {user?.name ? user.name.split(' ')[0] : 'user'}</span>
             <button

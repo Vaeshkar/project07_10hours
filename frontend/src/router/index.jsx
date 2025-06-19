@@ -4,8 +4,11 @@ import Home from "../pages/Home";
 import EventDetails from "../pages/EventDetails";
 import SignIn from "../pages/SignIn";
 import SignUp from "../pages/SignUp";
+import Profile from "../pages/Profile";
+import EditProfile from "../components/EditProfile";
 import ProtectedRoute from "../components/ProtectedRoute";
 import CreateEvent from "../pages/CreateEvent";
+
 
 export const router = createBrowserRouter([
   {
@@ -20,6 +23,8 @@ export const router = createBrowserRouter([
         element: <ProtectedRoute />,
         children: [
           { path: "create-event", element: <CreateEvent /> },
+          { path: "profile", element: <Profile /> },
+          { path: "profile/edit", element: <EditProfile /> },
         ],
       },
     ],

@@ -6,12 +6,10 @@ export function AuthProvider({ children }) {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  // Check localStorage for token on load
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
       setIsAuthenticated(true);
-      // Optional: fetch user profile here and setUser
     }
   }, []);
 
@@ -21,6 +19,10 @@ export function AuthProvider({ children }) {
     setUser(userData);
   };
 
+  const updateUser = (updatedUser) => {
+    setUser(prev => ({ ...prev, ...updatedUser }));
+  };
+
   const logout = () => {
     localStorage.removeItem('token');
     setIsAuthenticated(false);
@@ -28,7 +30,7 @@ export function AuthProvider({ children }) {
   };
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
+    <AuthContext.Provider value={{ isAuthenticated, user, login, logout, updateUser }}>
       {children}
     </AuthContext.Provider>
   );
