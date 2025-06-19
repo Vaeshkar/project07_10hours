@@ -46,7 +46,7 @@ export default function CreateEvent() {
 
   // Define the rightContent part for Card (the form)
   const rightContent = (
-    <form onSubmit={handleSubmit} className="space-y-6 p-4 z-10">
+    <form onSubmit={handleSubmit} className="space-y-6 p-4 py-14 z-10">
       <input
         type="text"
         placeholder="Title"
