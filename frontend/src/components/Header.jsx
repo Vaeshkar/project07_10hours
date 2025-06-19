@@ -112,7 +112,7 @@ export default function Header() {
             </>
           ) : (
             <>
-              <span className="mr-4 text-purple-800">Welcome, {user?.name ? user.name.split(' ')[0] : 'user'}</span>
+              <span className="mr-4 text-[#6153CC]">Welcome, {user?.name ? user.name.split(' ')[0] : 'user'}</span>
               <div className='flex items-center gap-2'>
                 <NavLink
                   to="/profile"
