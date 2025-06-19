@@ -10,7 +10,7 @@ import { errorHandler } from './middlewares/errorHandler.js';
 // Import necessary modules and initialize the Express application
 const allowedOrigins = [
   'http://localhost:5173',
-  'https://your-netlify-site.netlify.app',
+  'https://wbseventapi.netlify.app',
   'https://wbseventapi-be67e7cfc6b5.herokuapp.com',
 ];
 
