@@ -54,17 +54,27 @@ ENVIRONMENT=development
 
 ## 📜 Changelog
 
+### [v1.2.0] - 2025-06-19
+
+- **Full deployment pipeline established**: backend successfully deployed to Heroku, frontend deployed to Netlify with environment variables fully configured  
+- **CORS configuration fixed**: backend now properly allows cross-origin requests from frontend, solving previous CORS issues  
+- **Database setup and connection stabilized**: PostgreSQL on Heroku fully connected, data fetching working correctly on production  
+- **Authentication flow improved**: login, signup, token storage, and protected routes functioning end-to-end in deployed environment  
+- **UI polish**: consistent styling improvements across event list, event details, profile, and navigation components using TailwindCSS. Bare minimum styling applied to ensure a clean and functional UI 
+- **Error handling & debugging**: implemented clearer error logging and handled network/API errors gracefully  
+- **Codebase cleanup**: removed unused code, aligned config files, and finalized environment variable usage for local and production
+
 ### [v1.1.0] - 2025-06-19
 
-- Fixed deployment issues: added `Procfile` and configured buildpacks for Heroku backend
-- Configured PostgreSQL for Heroku deployment, replacing local SQLite
-- Implemented CORS support to allow frontend hosted on Netlify to access backend API
-- Refactored API calls to use Axios with automatic token injection
-- Added authentication context with protected routes and token persistence
-- Deployed frontend to Netlify and backend to Heroku with working live URLs
-- Improved routing and navigation with React Router v7, including guarded routes
-- Fixed styling and hover effects on header and SVG logo with TailwindCSS
-- Cleaned up environment variable handling for local and production builds
+- **Fixed deployment issues**: added `Procfile` and configured buildpacks for Heroku backend
+- **Configured PostgreSQL** for Heroku deployment, replacing local SQLite
+- **Implemented CORS support** to allow frontend hosted on Netlify to access backend API
+- **Refactored API calls** to use Axios with automatic token injection
+- **Added authentication context** with protected routes and token persistence
+- **Deployed frontend** to Netlify and backend to Heroku with working live URLs
+- **Improved routing and navigation** with React Router v7, including guarded routes
+- **Fixed styling and hover effects** on header and SVG logo with TailwindCSS
+- **Cleaned up environment variable handling** for local and production builds
 
 ### [v1.0.0] - 2025-06-18
 
