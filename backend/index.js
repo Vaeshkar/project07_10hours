@@ -25,12 +25,6 @@ app.use(cors(corsOptions));
 const PORT = process.env.PORT ?? 3001;
 const isProduction = process.env.ENVIRONMENT === 'production';
 
-const port = process.env.PORT || 3001;
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
-
 // Middleware to parse JSON requests
 app.use(express.json());
 
