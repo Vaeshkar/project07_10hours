@@ -8,11 +8,21 @@ import { setupSwagger } from './swagger.js';
 import { errorHandler } from './middlewares/errorHandler.js';
 
 // Import necessary modules and initialize the Express application
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://your-netlify-site.netlify.app',
+  'https://wbseventapi-be67e7cfc6b5.herokuapp.com',
+];
+
 const corsOptions = {
-  origin: [
-    'http://localhost:5173', 
-    'https://wbseventapi-be67e7cfc6b5.herokuapp.com/', 
-  ],
+  origin: function(origin, callback){
+    if(!origin) return callback(null, true);
+    if(allowedOrigins.indexOf(origin) !== -1){
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
 };
 
