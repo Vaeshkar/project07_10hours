@@ -3,16 +3,18 @@ import { Link } from 'react-router';
 
 export default function Home() {
   const [events, setEvents] = useState([]);
+  
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
   useEffect(() => {
-    fetch('http://localhost:3001/api/events')
+    fetch(`${apiUrl}/api/events`)
       .then((res) => res.json())
       .then((data) => {
         console.log("Fetched data:", data);
         setEvents(Array.isArray(data.results) ? data.results : []);
       })
       .catch((err) => console.error('Error fetching events:', err));
-  }, []);
+  }, [apiUrl]);
 
   return (
     <div className="text-white space-y-4">
@@ -36,7 +38,3 @@ export default function Home() {
     </div>
   );
 }
-
-
-
-

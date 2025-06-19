@@ -6,12 +6,14 @@ export default function EventDetails() {
   const { id } = useParams();
   const [event, setEvent] = useState(null);
 
+  const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
   useEffect(() => {
-    fetch(`http://localhost:3001/api/events/${id}`)
+    fetch(`${apiUrl}/api/events/${id}`)
       .then((res) => res.json())
       .then((data) => setEvent(data))
       .catch((err) => console.error('Error fetching event details:', err));
-  }, [id]);
+  }, [id, apiUrl]);
 
   if (!event) return <p className="text-white">Loading event details...</p>;
 
