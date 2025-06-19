@@ -11,7 +11,7 @@ import { errorHandler } from './middlewares/errorHandler.js';
 const corsOptions = {
   origin: [
     'http://localhost:5173', 
-    'https://wbseventapi.netlify.app/', 
+    'https://wbseventapi-be67e7cfc6b5.herokuapp.com/', 
   ],
   credentials: true,
 };
