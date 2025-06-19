@@ -10,11 +10,12 @@ import { errorHandler } from './middlewares/errorHandler.js';
 // Import necessary modules and initialize the Express application
 const corsOptions = {
   origin: [
-    'http://localhost:5173', // local frontend
-    'https://your-frontend-url.netlify.app', // replace with your real frontend URL
+    'http://localhost:5173', 
+    'https://wbseventapi.netlify.app/', 
   ],
   credentials: true,
 };
+
 
 const app = express();
 // Initialize the database connection
@@ -23,6 +24,12 @@ app.use(cors(corsOptions));
 // and allow credentials (cookies, authorization headers, etc.)
 const PORT = process.env.PORT ?? 3001;
 const isProduction = process.env.ENVIRONMENT === 'production';
+
+const port = process.env.PORT || 3001;
+
+app.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
+});
 
 // Middleware to parse JSON requests
 app.use(express.json());
@@ -43,10 +50,10 @@ app.use(errorHandler);
 // Error handling middleware to catch any errors that occur in the application
 // This middleware will log the error and send a response to the client
 app.listen(PORT, () => {
-  console.log('\x1b[33m%s\x1b[0m', `Server running on \x1b[36m http://localhost:${PORT}`);
+  console.log('\x1b[33m%s\x1b[0m', `Server running on \x1b[36m ${corsOptions.origin[0]}:${PORT}`);
   if (!isProduction)
     console.log(
       '\x1b[33m%s\x1b[0m',
-      `Swagger API docs available at \x1b[36m http://localhost:${PORT}/api-docs`
+      `Swagger API docs available at \x1b[36m ${corsOptions.origin[0]}:${PORT}/api-docs`
     );
 });
