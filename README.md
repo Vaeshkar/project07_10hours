@@ -22,14 +22,6 @@ cd backend
 npm install
 npm run dev
 ```
-
-### Frontend
-```bash
-cd frontend
-npm install
-npm run dev
-```
-
 Make sure the backend is running at `http://localhost:3001`.
 
 Create a `.env` file in the backend directory with:
@@ -37,6 +29,13 @@ Create a `.env` file in the backend directory with:
 PORT=3001
 JWT_SECRET=someTopSecret
 ENVIRONMENT=development
+```
+
+### Frontend
+```bash
+cd frontend
+npm install
+npm run dev
 ```
 
 create a `.env` file in the frontend directory with:
