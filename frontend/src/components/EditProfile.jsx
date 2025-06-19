@@ -5,6 +5,7 @@ import { useToast } from '../context/ToastContext';
 import Card from './Card';
 
 export default function EditProfile() {
+  const { deleteUser, logout } = useContext(AuthContext);
   const { user, updateUser } = useContext(AuthContext);
   const { addToast } = useToast();
   const navigate = useNavigate();
@@ -25,6 +26,7 @@ export default function EditProfile() {
       if (password.trim()) updatedData.password = password;
 
       await updateUser(updatedData);
+
       addToast('Profile updated successfully!', 'success');
       setPassword('');
       navigate('/profile');
@@ -79,7 +81,7 @@ export default function EditProfile() {
       </label>
 
       <div className="flex gap-4">
-        <button type="submit" className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer">
+        <button type="submit" className="w-full text-white border-2 border-[#6153CC] bg-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer">
           Save
         </button>
         <button
@@ -88,6 +90,23 @@ export default function EditProfile() {
           className="w-2/5 text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer"
         >
           Cancel
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            if (window.confirm('Are you sure you want to delete your profile? This action cannot be undone.')) {
+              deleteUser().then(() => {
+                addToast('Profile deleted successfully!', 'success');
+                logout();
+                navigate('/');
+              }).catch(err => {
+                addToast('Failed to delete profile: ' + err.message, 'error');
+              });
+            }
+          }}
+          className="w-full text-black hover:text-white border-2 border-red-600 bg-white/80 hover:bg-red-600 hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer"
+        >
+          Delete Profile
         </button>
       </div>
     </form>
