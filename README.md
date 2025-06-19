@@ -54,6 +54,17 @@ ENVIRONMENT=development
 
 ## 📜 Changelog
 
+### [v1.3.0] - 2025-06-19
+#### Major UI Enhancements and New Features
+
+-	Added Profile and Edit Profile pages with reusable Card component layout for consistent styling
+- Implemented Delete Event functionality on Event Details page with confirmation and toast feedback
+- Refactored event list and event details to use modular EventCard and Card components for better maintainability and UI consistency
+- Enhanced header navigation to dynamically show authentication-related links (Sign In, Sign Up vs. Profile, Logout) and disabled Create Event button when unauthenticated
+- Styled footer and page layout using TailwindCSS grid and flex utilities for responsive and clean design
+- General UI/UX polish: consistent button styles, hover effects, toast notifications positioning, and responsive grid layouts
+
+
 ### [v1.2.0] - 2025-06-19
 
 - **Full deployment pipeline established**: backend successfully deployed to Heroku, frontend deployed to Netlify with environment variables fully configured  
