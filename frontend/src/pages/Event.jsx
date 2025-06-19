@@ -14,12 +14,12 @@ export default function Event({ event }) {
         <img 
           src="/event_curl.svg"
           alt="Event curl"
-          className="absolute left-[10%] top-[10%] w-[80%] pointer-events-none z-10"
+          className="absolute left-[6%] top-[10%] w-[90%] pointer-events-none z-10"
         />
-        <div className="absolute left-[10%] top-[10%] w-[80%] flex items-center justify-center">
+        <div className="absolute left-[10%] top-[10%] w-[80%] flex items-center justify-center gap-12">
           <div className="flex justify-center items-center text-[12.5rem] font-black text-black tracking-tight uppercase">
             {new Date(event.date).getDate()}
-          </div>
+          </div>{' '}
           <div className="text-[12.5rem] text-black font-black uppercase">
             {new Date(event.date).toLocaleString("en-US", { month: "short" })}
           </div>
