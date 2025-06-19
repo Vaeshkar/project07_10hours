@@ -36,7 +36,6 @@ export default function CreateEvent() {
     }
   };
 
-  // Define the leftContent part for Card
   const leftContent = (
     <div className="text-black p-4">
       <h2 className="text-[8rem] font-black uppercase mb-6 text-right max-w-[650px]">Create New Event</h2>
@@ -44,7 +43,6 @@ export default function CreateEvent() {
     </div>
   );
 
-  // Define the rightContent part for Card (the form)
   const rightContent = (
     <form onSubmit={handleSubmit} className="space-y-6 p-4 py-14 z-10">
       <input
@@ -79,7 +77,7 @@ export default function CreateEvent() {
       />
       <button
         type="submit"
-        className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 flex justify-center"
+        className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 flex justify-center cursor-pointer"
         disabled={loading}
       >
         {loading ? <Spinner /> : 'Create Event'}

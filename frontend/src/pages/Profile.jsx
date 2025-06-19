@@ -21,7 +21,7 @@ export default function Profile() {
       <p className='w-full p-3 border bg-white/80 text-left'><strong>Email:</strong> {user?.email || 'Unknown'}</p>
       <Link
         to="/profile/edit"
-        className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3"
+        className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer flex justify-center"
       >
         Edit Profile
       </Link>

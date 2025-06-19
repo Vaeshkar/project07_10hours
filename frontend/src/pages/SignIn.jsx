@@ -4,6 +4,7 @@ import api from '../api/axios';
 import { AuthContext } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import { Spinner } from '../components/Spinner';
+import Card from '../components/Card';
 
 export default function SignIn() {
   const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ export default function SignIn() {
   const { login } = useContext(AuthContext);
   const { addToast } = useToast();
   const [loading, setLoading] = useState(false);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError(null);
@@ -22,7 +24,6 @@ export default function SignIn() {
       const res = await api.post('/api/auth/login', { email, password });
       login(res.data.token, res.data.user);
       addToast('Login successful!', 'success');
-      console.log('Logged in user:', res.data.user);
       navigate('/');
     } catch (err) {
       setError(err.response?.data?.message || 'Login failed');
@@ -32,34 +33,42 @@ export default function SignIn() {
     }
   };
 
-  return (
-    <div className="text-white max-w-md mx-auto p-4">
-      <h2 className="text-2xl font-bold mb-4">Sign In</h2>
-      {error && <div className="bg-red-600 text-white p-2 rounded mb-4">{error}</div>}
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="email"
-          placeholder="Email"
-          className="w-full p-2 rounded bg-gray-800 text-white"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="w-full p-2 rounded bg-gray-800 text-white"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-        <button
-          type="submit"
-          className="w-full bg-blue-600 hover:bg-blue-700 p-2 rounded text-white"
-        >
-          {loading ? <Spinner /> : 'Sign In'}
-        </button>
-      </form>
+  const leftContent = (
+    <div className="flex justify-end items-start h-full w-full p-4">
+      <h1 className="text-[8rem] font-black uppercase mb-6 text-right max-w-[650px]">
+        Sign In
+      </h1>
     </div>
   );
+
+  const rightContent = (
+    <form onSubmit={handleSubmit} className="flex flex-col gap-4 p-4 py-14 z-10 max-w-md w-full">
+      {error && <div className="bg-red-600 text-white p-2 rounded">{error}</div>}
+      <input
+        type="email"
+        placeholder="Email"
+        className="w-full p-3 border bg-white/80 text-left"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        required
+      />
+      <input
+        type="password"
+        placeholder="Password"
+        className="w-full p-3 border bg-white/80 text-left"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+        required
+      />
+      <button
+        type="submit"
+        className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer"
+        disabled={loading}
+      >
+        {loading ? <Spinner /> : 'Sign In'}
+      </button>
+    </form>
+  );
+
+  return <Card leftContent={leftContent} rightContent={rightContent} sideSvgRotation="rotate-3" />;
 }

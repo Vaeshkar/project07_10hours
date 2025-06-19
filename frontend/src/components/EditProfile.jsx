@@ -79,13 +79,13 @@ export default function EditProfile() {
       </label>
 
       <div className="flex gap-4">
-        <button type="submit" className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3">
+        <button type="submit" className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer">
           Save
         </button>
         <button
           type="button"
           onClick={handleCancel}
-          className="w-2/5 text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3"
+          className="w-2/5 text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer"
         >
           Cancel
         </button>
