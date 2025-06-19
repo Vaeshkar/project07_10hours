@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
-import EventCard from "../components/EventCard";
+import Event from '../pages/Event';
 
 export default function Home() {
   const [events, setEvents] = useState([]);
@@ -19,14 +19,14 @@ export default function Home() {
 
   return (
     <div className="text-black space-y-4">
-    <h2 className="text-[8rem] text-[#6153CC] font-black uppercase mt-4">Upcoming Events</h2>
+    <h2 className="text-[8rem] text-[#6153CC] font-black uppercase">Upcoming Events</h2>
     {events.length === 0 ? (
       <p>Loading events...</p>
     ) : (
       <div className="space-y-24">
         {events.map((event) => (
           <Link key={event.id} to={`/events/${event.id}`} className="block hover:scale-98 transition-all duration-600 ease-out">
-            <EventCard event={event} />
+            <Event key={event.id} event={event} />
           </Link>
         ))}
       </div>

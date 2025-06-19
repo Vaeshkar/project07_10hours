@@ -15,7 +15,7 @@ export default function Header() {
   };
 
   return (
-    <header className=" bg-white text-black shadow-2xl">
+    <header className=" bg-white text-black shadow-2xl mb-25">
       <div className="grid grid-cols-5 items-center min-h-[180px]">
         {/* Logo spans 2 columns */}
         <Link to="/" className='group col-span-2 flex h-full items-center justify-center text-xl font-bold hover:scale-95 transition-transform duration-600 ease-out'>
