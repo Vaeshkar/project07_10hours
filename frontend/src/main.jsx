@@ -13,9 +13,9 @@ createRoot(document.getElementById('root')).render(
       <AuthProvider>
          <Aurora
         colorStops={["#6153CC", "#29FF7B", "#6153CC"]}
-        blend={0.2}
-        amplitude={0.2}
-        speed={0.2}
+        blend={0.4}
+        amplitude={0.3}
+        speed={0.8}
       />
         <RouterProvider router={router} />
       </AuthProvider>

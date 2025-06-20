@@ -1,7 +1,8 @@
 import { useParams, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useToast } from '../context/ToastContext';
-import Card from '../components/Card';
+import CardDetails from '../components/CardDetails';
+import Magnet from '../components/Magnet'
 
 export default function EventDetails() {
   const { id } = useParams();
@@ -53,60 +54,100 @@ export default function EventDetails() {
   const nextEvent = events[currentIndex + 1];
 
   const leftContent = (
-    <>
-      <div className="text-black p-4">
-        <h1 className="text-[8rem] font-black uppercase mb-6 text-right max-w-[650px]">
-          Event Details
-        </h1>
-      </div>
-    </>
-  );
+    <div className="flex flex-col text-black p-4 h-full justify-between items-end">
+      <p className="font-black text-5xl uppercase text-right mt-12">{new Date(event.date).getDate()}{' '}{new Date(event.date).toLocaleString("en-US", { month: "short" })}</p>
+      <h1 className="text-[7rem] leading-26 font-black uppercase text-right">
+        {event.title}
+      </h1>
 
-  const rightContent = (
-    <div className="w-full mx-auto text-black z-10 p-4 py-14">
-      <button
-        onClick={() => navigate('/')}
-        className="w-full text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer"
-      >
-        Back
-      </button>
-
-      <div className="min-h-[50vh] p-6 text-white bg-[#6153CC]/90 mt-4">
-        <h3 className="text-[3.5rem] leading-15 uppercase font-black mb-6">{event.title}</h3>
-        <p className="mb-4 font-medium text-2xl">{event.description}</p>
-        <p className="font-black text-5xl">{new Date(event.date).toLocaleDateString()}</p>
-      </div>
-      <div className="flex justify-between gap-4 mt-6">
-        <button
-          onClick={() => prevEvent && navigate(`/events/${prevEvent.id}`)}
-          disabled={!prevEvent}
-          className={`px-4 py-2
-            ${prevEvent
-              ? 'w-1/2 text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer'
-              : 'w-1/2 bg-white/80 text-black/20 border-1 border-[#6153CC] cursor-not-allowed'}`}
-        >
-          ←
-        </button>
-
-        <button
-          onClick={() => nextEvent && navigate(`/events/${nextEvent.id}`)}
-          disabled={!nextEvent}
-          className={`px-4 py-2
-            ${nextEvent
-              ? 'w-1/2 text-black hover:text-white border-2 border-[#6153CC] bg-white/80 hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer'
-              : 'w-1/2 bg-white/80 text-black/20 border-1 border-[#6153CC] cursor-not-allowed'}`}
-        >
-          →
-        </button>
-      </div>
-      <button
-        onClick={handleDelete}
-        className="w-full text-black hover:text-white border-2 border-red-600 bg-white/80 hover:bg-red-600 hover:scale-95 transition-all duration-400 ease-out p-3 cursor-pointer mt-4"
-      >
-        Delete Event
-      </button>
     </div>
   );
 
-  return <Card leftContent={leftContent} rightContent={rightContent} sideSvgRotation="rotate-[-15deg]" />;
+  const rightContent = (
+    <div className="w-full h-full mx-auto z-10 py-4">
+      <div className="p-4 text-black mt-4 flex flex-col gap-4 h-full">
+        <div className="flex-1 flex flex-col justify-center items-start space-y-2">
+          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-14">Share</p>
+          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-2">Follow us</p>
+        </div>
+        
+        <div className="flex-1 flex-col items-center justify-start z-10 mt-60">
+          {event.location && (() => {
+            const parts = event.location.split(',').map(part => part.trim());
+            return (
+              <>
+                <p className='text-xl font-medium text-black text-left'>
+                  {parts[0]}, </p>
+                <p className='text-xl font-medium text-black text-left'>
+                  {[parts[1], parts[2]].filter(Boolean).join(', ')}</p>
+              </>
+            );
+          })()}
+        </div>
+        <div>
+          <p className="font-black text-5xl text-left">{event.description}</p>
+        </div>
+      </div>
+    </div>
+  );
+
+  return (
+    <>
+      {/* Magnet effect for the card */}
+      <Magnet
+        wrapperClassName="relative w-full h-full"
+        padding={20}
+        magnetStrength={15}
+        activeTransition="transform 0.3s ease-out"
+        inactiveTransition="transform 0.6s ease-in-out"
+      >
+        <CardDetails
+          sideSvgRotation
+          leftContent={leftContent}
+          rightContent={rightContent}
+          snakeSvgRotation="rotate-[-8deg]"
+        />
+      </Magnet>
+      {/* Navigation, Back, Delete buttons */}
+        <div className="flex justify-between gap-12 px-8 -mt-2">
+          <button
+            onClick={() => prevEvent && navigate(`/events/${prevEvent.id}`)}
+            disabled={!prevEvent}
+            className={`px-6 py-3
+              ${prevEvent
+                ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
+                : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
+          >
+            ←
+          </button>
+          <div className='flex items-center gap-12'>
+            <button
+              onClick={() => navigate('/')}
+              className="px-6 py-3 text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer min-w-[16rem]"
+            >
+              Back
+            </button>
+
+            <button
+              onClick={handleDelete}
+              className="px-6 py-3 text-black hover:text-white border border-red-600 hover:bg-red-600 hover:scale-95 transition-all duration-400 ease-out cursor-pointer min-w-[16rem]"
+            >
+              Delete Event
+            </button>
+
+          </div>
+
+          <button
+            onClick={() => nextEvent && navigate(`/events/${nextEvent.id}`)}
+            disabled={!nextEvent}
+            className={`px-6 py-3
+              ${nextEvent
+                ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
+                : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
+          >
+            →
+          </button>
+        </div>
+    </>
+  );
 }
