@@ -25,7 +25,7 @@ export default function Home() {
     ) : (
       <div className="space-y-24">
         {events.map((event) => (
-          <Link key={event.id} to={`/events/${event.id}`} className="block hover:scale-98 transition-all duration-600 ease-out">
+          <Link key={event.id} to={`/events/${event.id}`} className="block">
             <Event key={event.id} event={event} />
           </Link>
         ))}
@@ -34,3 +34,5 @@ export default function Home() {
   </div>
   );
 }
+
+/* hover:scale-98 transition-all duration-600 ease-out */
