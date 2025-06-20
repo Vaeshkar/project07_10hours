@@ -63,5 +63,5 @@ export default function Event({ event }) {
           inactiveTransition="transform 0.6s ease-in-out"
         >
           <Card leftContent={leftContent} rightContent={rightContent} sideSvgRotation={sideSvgRotation} />
-        </Magnet>;
+        </Magnet>
 };
