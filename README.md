@@ -58,6 +58,18 @@ VITE_API_URL=http://localhost:3001
 
 ## 📜 Changelog
 
+### [v1.4.0] - 2025-06-20
+#### UI Overhaul and Codebase Stabilization
+
+- Refactored `EventDetails` layout with redesigned card structure and consistent visual hierarchy
+- Introduced new SVG corner assets (`event_curl_side.svg` and `event_curl_snale.svg`) to visually enhance event cards
+- Improved location formatting by separating venue, city, and country on multiple lines
+- Implemented 404 Not Found fallback route using React Router to catch invalid event paths (e.g., `/events/55`)
+- Reintegrated animated header with scroll velocity behavior on Event Details page
+- Resolved multiple component import errors, token issues, and server-side JWT handling inconsistencies
+- Reverted temporary backend refactors to restore original working state and prevent further disruptions
+- Confirmed consistent local and production behavior after full reset and restoration
+
 ### [v1.3.0] - 2025-06-19
 #### Major UI Enhancements and New Features
 

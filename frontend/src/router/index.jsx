@@ -8,7 +8,7 @@ import Profile from "../pages/Profile";
 import EditProfile from "../components/EditProfile";
 import ProtectedRoute from "../components/ProtectedRoute";
 import CreateEvent from "../pages/CreateEvent";
-
+import NotFound from '../pages/NotFound';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +19,7 @@ export const router = createBrowserRouter([
       { path: "events/:id", element: <EventDetails /> },
       { path: "signin", element: <SignIn /> },
       { path: "signup", element: <SignUp /> },
+      { path: "*", element: <NotFound /> },
       {
         element: <ProtectedRoute />,
         children: [

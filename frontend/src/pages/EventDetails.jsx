@@ -36,15 +36,27 @@ export default function EventDetails(){
 
   useEffect(() => {
     fetch(`${apiUrl}/api/events/${id}`)
-      .then((res) => res.json())
-      .then((data) => setEvent(data))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        if (!res.ok) throw new Error('Event not found');
+        return res.json();
+      })
+      .then((data) => {
+        if (!data || Object.keys(data).length === 0) {
+          navigate('/404'); // optional: or just navigate('*')
+        } else {
+          setEvent(data);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        navigate('/404');
+      });
   }, [id]);
 
   useEffect(() => {
     fetch(`${apiUrl}/api/events`)
       .then((res) => res.json())
-      .then((data) => setEvents(data.results)) // adjust if needed
+      .then((data) => setEvents(data.results)) 
       .catch((err) => console.error(err));
   }, []);
 
@@ -68,8 +80,8 @@ export default function EventDetails(){
     <div className="w-full h-full mx-auto z-10 py-4">
       <div className="p-4 text-black mt-4 flex flex-col gap-4 h-full">
         <div className="flex-1 flex flex-col justify-center items-start space-y-2">
-          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-14">Share</p>
-          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-2">Follow us</p>
+          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-14 cursor-pointer">Share</p>
+          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-2 cursor-pointer">Follow us</p>
         </div>
         
         <div className="flex-1 flex-col items-center justify-start z-10 mt-60">
