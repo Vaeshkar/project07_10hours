@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router';
 import Event from '../pages/Event';
+import ScrollVelocity from '../components/ScrollVelocity';
 
-export default function Home() {
+
+export default function Home({ velocity = 30 }) {
   const [events, setEvents] = useState([]);
   
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
@@ -19,7 +21,12 @@ export default function Home() {
 
   return (
     <div className="text-black space-y-4">
-    <h2 className="text-[8rem] text-white/60 font-black uppercase -mt-18">Upcoming Events</h2>
+    <h2 className="text-[8rem] text-white font-black uppercase -mt-20 mb-6 text-center">
+    <ScrollVelocity
+      texts={['Upcoming Events']} 
+      velocity={velocity} 
+      className="custom-scroll-text"
+    /></h2>
     {events.length === 0 ? (
       <p>Loading events...</p>
     ) : (
