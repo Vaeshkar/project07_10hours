@@ -19,7 +19,7 @@ export default function Home() {
 
   return (
     <div className="text-black space-y-4">
-    <h2 className="text-[8rem] text-[#6153CC] font-black uppercase">Upcoming Events</h2>
+    <h2 className="text-[8rem] text-white/60 font-black uppercase -mt-18">Upcoming Events</h2>
     {events.length === 0 ? (
       <p>Loading events...</p>
     ) : (

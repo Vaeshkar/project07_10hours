@@ -2,11 +2,13 @@ import './App.css';
 import { Outlet, NavLink } from 'react-router';
 import Header from './components/Header';
 import Footer from './components/Footer';
+import Aurora from './components/Aurora';
+  
 
 function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* your grid container */}
+    <div id='inner_root' className="min-h-screen flex flex-col">
+      {/*grid container */}
       <div className="grid grid-cols-5 flex-grow relative">
         {/* Vertical border lines */}
         <div className="absolute col-start-3 col-end-4 border-l border-black h-full z-50"></div>

@@ -1,4 +1,5 @@
 import Card from "../components/Card";
+import Magnet from '../components/Magnet'
 
 function getRandomRotation() {
   const rotations = ["rotate-0", "rotate-12", "-rotate-12", "rotate-6", "-rotate-6"];
@@ -7,7 +8,7 @@ function getRandomRotation() {
 
 export default function Event({ event }) {
   const sideSvgRotation = getRandomRotation();
-
+  
   const leftContent = (
     <>
       <div className="flex items-center space-x-4">
@@ -54,5 +55,13 @@ export default function Event({ event }) {
     </>
   );
 
-  return <Card leftContent={leftContent} rightContent={rightContent} sideSvgRotation={sideSvgRotation} />;
+  return <Magnet
+          wrapperClassName="relative w-full h-full"
+          padding={20}
+          magnetStrength={10}
+          activeTransition="transform 0.3s ease-out"
+          inactiveTransition="transform 0.6s ease-in-out"
+        >
+          <Card leftContent={leftContent} rightContent={rightContent} sideSvgRotation={sideSvgRotation} />;
+        </Magnet>;
 };

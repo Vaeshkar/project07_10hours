@@ -1,8 +1,21 @@
 @import "tailwindcss";
 
+/* App.css */
 #root {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+}
+
+#inner_root {
+  position: relative;
   max-width: 1280px;
   margin: 0 auto;
   text-align: center;
+}
+
+.aurora-container {
+  width: 100%;
+  height: 70%;
 }
 
