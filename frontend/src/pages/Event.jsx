@@ -57,8 +57,8 @@ export default function Event({ event }) {
 
   return <Magnet
           wrapperClassName="relative w-full h-full"
-          padding={5}
-          magnetStrength={25}
+          padding={20}
+          magnetStrength={15}
           activeTransition="transform 0.3s ease-out"
           inactiveTransition="transform 0.6s ease-in-out"
         >
