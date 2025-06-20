@@ -122,9 +122,8 @@ export default function EventDetails(){
           rightContent={rightContent}
           snakeSvgRotation="rotate-[-8deg]"
         />
-      </Magnet>
       {/* Navigation, Back, Delete buttons */}
-        <div className="flex justify-between gap-12 px-8 -mt-2">
+        <div className="flex justify-between gap-12 px-8 mt-8 z-20">
           <button
             onClick={() => prevEvent && navigate(`/events/${prevEvent.id}`)}
             disabled={!prevEvent}
@@ -163,6 +162,7 @@ export default function EventDetails(){
             →
           </button>
         </div>
+      </Magnet>
     </>
   );
 }
