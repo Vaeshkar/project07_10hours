@@ -2,9 +2,10 @@ import { useParams, useNavigate } from 'react-router';
 import { useEffect, useState } from 'react';
 import { useToast } from '../context/ToastContext';
 import CardDetails from '../components/CardDetails';
+import DecryptedText from '../components/DecryptedText';
 import Magnet from '../components/Magnet'
 
-export default function EventDetails() {
+export default function EventDetails(){
   const { id } = useParams();
   const { addToast } = useToast();
   const navigate = useNavigate();
@@ -93,6 +94,20 @@ export default function EventDetails() {
 
   return (
     <>
+      <div className="text-black space-y-4">
+        <h2 className="text-[8rem] text-white font-black uppercase -mt-20 mb-6 text-center">
+          <DecryptedText 
+          text="EVENT DETAILS"
+          speed={100}
+          maxIterations={20}
+          characters="764BESSLAN"
+          className="revealed"
+          parentClassName="all-letters"
+          encryptedClassName="encrypted"
+          animateOn='hover'
+          />
+        </h2>
+      </div>
       {/* Magnet effect for the card */}
       <Magnet
         wrapperClassName="relative w-full h-full"

@@ -21,24 +21,24 @@ export default function Home({ velocity = 30 }) {
 
   return (
     <div className="text-black space-y-4">
-    <h2 className="text-[8rem] text-white font-black uppercase -mt-20 mb-6 text-center">
-    <ScrollVelocity
-      texts={['Upcoming Events']} 
-      velocity={velocity} 
-      className="custom-scroll-text"
-    /></h2>
-    {events.length === 0 ? (
-      <p>Loading events...</p>
-    ) : (
-      <div className="space-y-24">
-        {events.map((event) => (
-          <Link key={event.id} to={`/events/${event.id}`} className="block">
-            <Event key={event.id} event={event} />
-          </Link>
-        ))}
-      </div>
-    )}
-  </div>
+      <h2 className="text-[8rem] text-white font-black uppercase -mt-20 mb-6 text-center">
+      <ScrollVelocity
+        texts={['Upcoming Events']} 
+        velocity={velocity} 
+        className="custom-scroll-text"
+      /></h2>
+      {events.length === 0 ? (
+        <p>Loading events...</p>
+      ) : (
+        <div className="space-y-24">
+          {events.map((event) => (
+            <Link key={event.id} to={`/events/${event.id}`} className="block">
+              <Event key={event.id} event={event} />
+            </Link>
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 
