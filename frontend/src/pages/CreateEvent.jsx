@@ -55,9 +55,10 @@ export default function CreateEvent() {
       />
       <input
         type="text"
-        placeholder="Location, e.g. New York, NY, USA"
+        placeholder="Location, e.g. Address, City, Country"
         className="w-full p-3 border bg-white/80"
         value={location}
+        maxLength={200}
         onChange={(e) => setLocation(e.target.value)}
         required
       />
