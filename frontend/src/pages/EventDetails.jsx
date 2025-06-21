@@ -34,6 +34,7 @@ export default function EventDetails(){
   }
 };
 
+  // Fetch event details by ID
   useEffect(() => {
     fetch(`${apiUrl}/api/events/${id}`)
       .then((res) => {
@@ -42,7 +43,7 @@ export default function EventDetails(){
       })
       .then((data) => {
         if (!data || Object.keys(data).length === 0) {
-          navigate('/404'); // optional: or just navigate('*')
+          navigate('/404'); 
         } else {
           setEvent(data);
         }
@@ -53,12 +54,31 @@ export default function EventDetails(){
       });
   }, [id]);
 
+  // Fetch all events for navigation
   useEffect(() => {
     fetch(`${apiUrl}/api/events`)
       .then((res) => res.json())
       .then((data) => setEvents(data.results)) 
       .catch((err) => console.error(err));
   }, []);
+
+  // Handle keyboard navigation for next/previous events
+  useEffect(() => {
+    function keypressEventListener(e) {
+      const currentIndex = events.findIndex((ev) => ev.id === parseInt(id));
+      if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        navigate(`/events/${events[currentIndex - 1].id}`);
+      }
+      if (e.key === 'ArrowRight' && currentIndex < events.length - 1) {
+        navigate(`/events/${events[currentIndex + 1].id}`);
+      }
+    }
+
+    window.addEventListener('keydown', keypressEventListener);
+    return () => {
+      window.removeEventListener('keydown', keypressEventListener);
+    };
+  }, [events, id, navigate]);
 
   if (!event) return <p>Loading event...</p>;
 
@@ -110,9 +130,9 @@ export default function EventDetails(){
         <h2 className="text-[5rem] text-white font-black uppercase -mt-24 mb-1 text-center">
           <DecryptedText 
           text="EVENT DETAILS"
-          speed={100}
+          speed={120}
           maxIterations={20}
-          characters="764BESSLAN"
+          characters="WBS BESSLAN"
           className="revealed"
           parentClassName="all-letters"
           encryptedClassName="encrypted"
