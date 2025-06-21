@@ -107,7 +107,7 @@ export default function EventDetails(){
   return (
     <>
       <div className="text-black space-y-4">
-        <h2 className="text-[8rem] text-white font-black uppercase -mt-20 mb-6 text-center">
+        <h2 className="text-[5rem] text-white font-black uppercase -mt-24 mb-1 text-center">
           <DecryptedText 
           text="EVENT DETAILS"
           speed={100}
