@@ -4,6 +4,7 @@ import { useToast } from '../context/ToastContext';
 import CardDetails from '../components/CardDetails';
 import DecryptedText from '../components/DecryptedText';
 import Magnet from '../components/Magnet'
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function EventDetails(){
   const { id } = useParams();
@@ -11,6 +12,15 @@ export default function EventDetails(){
   const navigate = useNavigate();
   const [event, setEvent] = useState(null);
   const [events, setEvents] = useState([]);
+  const [direction, setDirection] = useState(1); // 1 for next, -1 for prev
+  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+
+  // Update screen width on resize
+  useEffect(() => {
+    const handleResize = () => setScreenWidth(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:3001';
 
@@ -67,9 +77,11 @@ export default function EventDetails(){
     function keypressEventListener(e) {
       const currentIndex = events.findIndex((ev) => ev.id === parseInt(id));
       if (e.key === 'ArrowLeft' && currentIndex > 0) {
+        setDirection(-1);
         navigate(`/events/${events[currentIndex - 1].id}`);
       }
       if (e.key === 'ArrowRight' && currentIndex < events.length - 1) {
+        setDirection(1);
         navigate(`/events/${events[currentIndex + 1].id}`);
       }
     }
@@ -148,52 +160,66 @@ export default function EventDetails(){
         activeTransition="transform 0.3s ease-out"
         inactiveTransition="transform 0.6s ease-in-out"
       >
-        <CardDetails
-          sideSvgRotation
-          leftContent={leftContent}
-          rightContent={rightContent}
-          snakeSvgRotation="rotate-[-8deg]"
-        />
-      {/* Navigation, Back, Delete buttons */}
-        <div className="flex justify-between gap-12 px-8 mt-8 z-20">
-          <button
-            onClick={() => prevEvent && navigate(`/events/${prevEvent.id}`)}
-            disabled={!prevEvent}
-            className={`px-6 py-3
-              ${prevEvent
-                ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
-                : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
-          >
-            ←
-          </button>
-          <div className='flex items-center gap-12'>
-            <button
-              onClick={() => navigate('/')}
-              className="px-6 py-3 text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer min-w-[16rem]"
+        <div className="slider_wrapper w-full">
+          <AnimatePresence mode='wait'>
+            <motion.div
+              key={event.id}
+              initial={{ x: direction * screenWidth, skewX: direction * 10 }}
+              animate={{ x: 0, skewX: 0 }}
+              exit={{ x: direction * -screenWidth, skewX: direction * -10 }}
+              transition={{
+                x: { type: "tween", stiffness: 200, damping: 20, duration: 0.3 },
+                skewX: { type: "spring", duration: 0.2 }
+              }}
             >
-              Back
-            </button>
-
-            <button
-              onClick={handleDelete}
-              className="px-6 py-3 text-black hover:text-white border border-red-600 hover:bg-red-600 hover:scale-95 transition-all duration-400 ease-out cursor-pointer min-w-[16rem]"
-            >
-              Delete Event
-            </button>
-
-          </div>
-
-          <button
-            onClick={() => nextEvent && navigate(`/events/${nextEvent.id}`)}
-            disabled={!nextEvent}
-            className={`px-6 py-3
-              ${nextEvent
-                ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
-                : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
-          >
-            →
-          </button>
+              <CardDetails
+                sideSvgRotation
+                leftContent={leftContent}
+                rightContent={rightContent}
+                snakeSvgRotation="rotate-[-8deg]" />
+            </motion.div>
+          </AnimatePresence>
         </div>
+      <div className="flex justify-between gap-12 px-8 mt-8 z-20">
+        {/* Navigation, Back, Delete buttons */}
+            <button
+              onClick={() => {prevEvent && navigate(`/events/${prevEvent.id}`); setDirection(-1);}}
+              disabled={!prevEvent}
+              className={`px-6 py-3
+                ${prevEvent
+                  ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
+                  : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
+            >
+              ←
+            </button>
+            <div className='flex items-center gap-12'>
+              <button
+                onClick={() => navigate('/')}
+                className="px-6 py-3 text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer min-w-[16rem]"
+              >
+                Back
+              </button>
+
+              <button
+                onClick={handleDelete}
+                className="px-6 py-3 text-black hover:text-white border border-red-600 hover:bg-red-600 hover:scale-95 transition-all duration-400 ease-out cursor-pointer min-w-[16rem]"
+              >
+                Delete Event
+              </button>
+
+            </div>
+
+            <button
+              onClick={() => {nextEvent && navigate(`/events/${nextEvent.id}`); setDirection(1);}}
+              disabled={!nextEvent}
+              className={`px-6 py-3
+                ${nextEvent
+                  ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
+                  : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
+            >
+              →
+            </button>
+          </div>
       </Magnet>
     </>
   );

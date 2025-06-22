@@ -58,6 +58,17 @@ VITE_API_URL=http://localhost:3001
 
 ## 📜 Changelog
 
+### [v1.5.0] - 2025-06-22
+#### Motion Navigation and Final UI Polish
+
+- Added animated left/right navigation between Event Details using `motion`, including direction-aware sliding transitions
+- Configured keyboard arrow key navigation support for browsing between events
+- Implemented 2-line truncation for long event descriptions to improve card layout consistency
+- Fixed layout bugs related to horizontal overflow and motion transitions
+- Introduced optional skew effect to slide animations for visual depth
+- Finalized responsive layout base for future mobile optimizations
+- Verified 404 fallback route works correctly on Netlify and Heroku `_redirects` file
+
 ### [v1.4.0] - 2025-06-20
 #### UI Overhaul and Codebase Stabilization
 
