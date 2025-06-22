@@ -45,9 +45,9 @@ export default function Event({ event }) {
       </div>
 
       <div className="flex-1 flex flex-col justify-center items-start space-y-2">
-        <p className="text-lg text-black font-semibold cursor-pointer hover:text-purple-900 transition-all duration-300">Share</p>
-        <p className="text-lg text-black font-semibold cursor-pointer hover:text-purple-900 transition-all duration-300">Follow us</p>
-      </div>
+          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-14 cursor-pointer">Share</p>
+          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-2 cursor-pointer">Follow us</p>
+        </div>
 
       <div className="flex overflow-hidden max-w-[380px] z-10">
         <p className="text-4xl text-left text-black text-medium leading-relaxed mb-15">{event.description}</p>

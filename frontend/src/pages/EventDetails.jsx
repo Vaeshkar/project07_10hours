@@ -112,8 +112,8 @@ export default function EventDetails(){
     <div className="w-full h-full mx-auto z-10 py-4">
       <div className="p-4 text-black mt-4 flex flex-col gap-4 h-full">
         <div className="flex-1 flex flex-col justify-center items-start space-y-2">
-          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-14 cursor-pointer">Share</p>
-          <p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-2 cursor-pointer">Follow us</p>
+          <motion.div><p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-14 cursor-pointer">Share</p></motion.div>
+          <motion.div><p className="text-lg font-medium hover:text-[#6153CC] underline underline-[#6153CC] hover:no-underline transition-all duration-400 ease-out -mt-2 cursor-pointer">Follow us</p></motion.div>
         </div>
         
         <div className="flex-1 flex-col items-center justify-start z-10 mt-60">
@@ -190,7 +190,7 @@ export default function EventDetails(){
                   ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
                   : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
             >
-              ←
+              ❮
             </button>
             <div className='flex items-center gap-12'>
               <button
@@ -217,7 +217,7 @@ export default function EventDetails(){
                   ? 'text-black hover:text-white border border-[#6153CC] hover:bg-[#6153CC] hover:scale-95 transition-all duration-400 ease-out cursor-pointer'
                   : 'text-black/20 border border-[#6153CC] cursor-not-allowed'}`}
             >
-              →
+              ❯
             </button>
           </div>
       </Magnet>

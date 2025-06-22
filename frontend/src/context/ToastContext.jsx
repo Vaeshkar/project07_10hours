@@ -28,18 +28,18 @@ export const ToastProvider = ({ children }) => {
   return (
     <ToastContext.Provider value={{ addToast }}>
       {children}
-      <div className="toast-container fixed top-4 right-4 space-y-2 z-50">
+      <div className="toast-container fixed bg-white mb-6 top-6 right-10 space-y-4 z-50">
         {toasts.map(({ id, message, type, progress }) => (
           <div
             key={id}
-            className={`toast p-2 rounded shadow relative overflow-hidden ${
-              type === 'error' ? 'bg-red-800' : 'bg-green-800'
-            } text-white`}
+            className={`toast p-2 shadow-xl relative overflow-hidden ${
+              type === 'error' ? 'border-red-500 border-2' : 'border-green-500 border-2'
+            } text-black`}
             style={{ minWidth: '200px' }}
           >
             {message}
             <div
-              className="absolute bottom-0 left-0 h-1 bg-white opacity-50"
+              className="absolute bottom-0 left-0 h-1 bg-[#6153CC] "
               style={{ width: `${progress}%`, transition: 'width 0.06s linear' }}
             />
           </div>

@@ -11,7 +11,7 @@ export default function Header() {
   const handleLogout = () => {
     logout();
     addToast('Logout successful!', 'success');
-    navigate('/signin');
+    navigate('/');
   };
 
   return (
