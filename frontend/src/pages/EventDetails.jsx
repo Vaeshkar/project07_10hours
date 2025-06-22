@@ -141,7 +141,7 @@ export default function EventDetails(){
       <div className="text-black space-y-4">
         <h2 className="text-[5rem] text-white font-black uppercase -mt-24 mb-1 text-center">
           <DecryptedText 
-          text="EVENT DETAILS"
+          text={`EVENT DETAILS ${currentIndex + 1}/${events.length}`}
           speed={120}
           maxIterations={20}
           characters="WBS BESSLAN"
