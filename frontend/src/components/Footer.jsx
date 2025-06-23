@@ -4,7 +4,7 @@ export default function Footer() {
       <div className="col-span-2 flex justify-center items-center text-xl font-medium">
       </div>
       <div className="col-span-1 flex flex-col justify-center items-center">
-        <p>&copy; 2025 WBS Coding School</p>
+        <p>&copy; {new Date().getFullYear()} WBS Coding School</p>
       </div>
       <div className="col-span-2 flex flex-col justify-center items-start ml-10 font-medium space-x-2 text-left">
         <p>Projects hosted on{' '}<a
