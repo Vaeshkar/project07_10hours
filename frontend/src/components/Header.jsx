@@ -1,12 +1,14 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import { NavLink, Link, useNavigate } from 'react-router';
 import { useToast } from '../context/ToastContext';
+import MobileMenu from '../components/MobileMenu';
 
 export default function Header() {
   const { isAuthenticated, user, logout } = useContext(AuthContext);
   const navigate = useNavigate();
   const { addToast } = useToast();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const handleLogout = () => {
     logout();
@@ -15,8 +17,8 @@ export default function Header() {
   };
 
   return (
-    <header className=" bg-white text-black shadow-2xl mb-25">
-      <div className="grid grid-cols-5 items-center min-h-[180px]">
+    <>
+      <div className="hidden md:grid bg-white text-black shadow-2xl mb-25 md:grid-cols-5 sm:grid-cols-1 items-center md:min-h-[180px] sm:min-h-[120px] z-50">
         {/* Logo spans 2 columns */}
         <Link to="/" className='group col-span-2 flex h-full items-center justify-center text-xl font-bold hover:scale-95 transition-transform duration-600 ease-out'>
         <svg
@@ -35,7 +37,7 @@ export default function Header() {
       </Link>
       
         {/* Group 1 */}
-        <nav className="flex flex-col h-full items-start justify-center border-l border-black px-10">
+        <nav className="flex flex-col h-full items-start justify-center border-l border-black sm:px-6 md:px-10">
           <NavLink
             to="/"
             className={({ isActive }) =>
@@ -62,7 +64,7 @@ export default function Header() {
         </nav>
 
         {/* Group 2 */}
-        <nav className="flex flex-col h-full items-start justify-center border-l border-black px-10">
+        <nav className="flex flex-col h-full items-start justify-center border-l border-black sm:px-6 md:px-10">
           <NavLink
           to="/About"
           // Placeholder link for "About" section
@@ -90,7 +92,7 @@ export default function Header() {
         </nav>
 
         {/* Group 3: Show Sign In/Up if NOT authenticated; else Profile + Logout */}
-        <nav className="flex flex-col h-full items-start justify-center border-l border-black px-10">
+        <nav className="flex flex-col h-full items-start justify-center border-l border-black sm:px-6 md:px-10">
           {!isAuthenticated ? (
             <>
               <NavLink
@@ -134,7 +136,26 @@ export default function Header() {
           )}
         </nav>
       </div>
-    </header>
+      <div className="md:hidden bg-white shadow-2xl flex justify-between items-center px-4 py-3 z-50">
+        <Link to="/" className="text-xl font-bold">
+          EVENT
+        </Link>
+        <button
+          onClick={() => setIsMobileMenuOpen(true)}
+          className="text-black text-4xl"
+          aria-label="Open Menu"
+        >
+          ☰
+        </button>
+        <MobileMenu
+          isOpen={isMobileMenuOpen}
+          onClose={() => setIsMobileMenuOpen(false)}
+          isAuthenticated={isAuthenticated}
+          user={user}
+          handleLogout={handleLogout}
+        />
+      </div>
+    </>
   );
 }
 {/* <span className="mr-4">Welcome, {user?.name ? user.name.split(' ')[0] : 'user'}</span> */}

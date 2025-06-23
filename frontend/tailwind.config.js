@@ -9,6 +9,12 @@ export default {
         robotoCondensed: ['"Roboto Condensed"', 'sans-serif'],
       },
     },
+    screens: {
+      sm: '640px',
+      md: '768px', // < this is what your layout depends on
+      lg: '1024px',
+      xl: '1280px',
+    },
   },
   plugins: [],
 }
